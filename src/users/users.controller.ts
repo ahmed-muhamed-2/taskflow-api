@@ -24,16 +24,19 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(Number(id));
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   createUser(@Body() Body: CreateUserDto) {
     return this.usersService.create(Body);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   updateUser(@Param('id') id:string, @Body() Body: Partial<UpdateUserDto>) {
     return this.usersService.update(Number(id), Body);
   }

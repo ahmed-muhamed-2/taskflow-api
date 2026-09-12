@@ -34,11 +34,15 @@ export class AuthService {
             },
         });
 
-        return {
+        const payload = {
             id: user.id,
             name: user.name,
             email: user.email,
             role: user.role,
+        };
+
+        return {
+            accessToken: await this.jwtService.signAsync(payload),
         };
     }
 
